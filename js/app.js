@@ -5,6 +5,7 @@ const modal = document.querySelector(".modal");
 
 let lives = 5;
 let score = 0; 
+let keyboard = true;
 
 // Enemies our player must avoid
 class Enemy {
@@ -60,7 +61,7 @@ class Player {
     }
 
     update(dt) {
-        if (player.y < 80 && player.y > 0) {
+        if (player.y === 0) {
             getScore();
             resetPlayer();
         }
@@ -82,9 +83,8 @@ class Player {
               if (this.x + 100 <= 480) this.x += 100;
             break;
             case 'down':
-              if (this.y + 80 <= 440) this.y += 80;
+              if (this.y + 80 <= 400) this.y += 80;
             break;
-
         }   
     }
 };
@@ -94,18 +94,19 @@ class Player {
 // Place all enemy objects in an array called allEnemies
 //const allEnemies = [];
 
-const enemy11 = new Enemy(0, 60, 360);
-const enemy12 = new Enemy(-360, 60, 120);
-const enemy21 = new Enemy(-740, 140, 240);
-const enemy22 = new Enemy(-340, 140, 110);
-const enemy31 = new Enemy(-60, 220, 200);
+const enemy11 = new Enemy(0, 80, 360);
+const enemy12 = new Enemy(-360, 80, 120);
+const enemy21 = new Enemy(-740, 160, 240);
+const enemy22 = new Enemy(-340, 160, 110);
+const enemy31 = new Enemy(-60, 240, 200);
 //const enemy32 = new Enemy(-240, 220, 640);
 let allEnemies = [enemy11, enemy12, enemy21, enemy22, enemy31];
 // Place the player object in a variable called player
-const player = new Player(205, 380);
+const player = new Player(205, 400);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
+
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
@@ -113,12 +114,12 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
+    if(keyboard) {
     player.handleInput(allowedKeys[e.keyCode]);
+    }
 });
 
-//
-
+// Remove a life, update status and check if the player is out of lives
 livesContainer.innerHTML = lives;
 
 function removeLife () {
@@ -129,6 +130,7 @@ function removeLife () {
     }
 }
 
+// Add points and update status
 scoreContainer.innerHTML = score;
 
 function getScore () {
@@ -139,30 +141,34 @@ function getScore () {
 // Push the Player back to the start position
 function resetPlayer () {
     player.x = 205; 
-    player.y = 380;
+    player.y = 400;
 }
 
+// Reset lives and score 
 function resetScoreBoard () {
         lives = 5;
         livesContainer.innerHTML = lives;
 
         score = 0;
         scoreContainer.innerHTML = score;    
+
+        keyboard = true;
 }
 
 
-// Modal
-
+// Modal - Restart game button
 restartButtonModal.addEventListener("click", function() {
 	modal.classList.add("hide");
     resetScoreBoard();
 });
 
+// // Modal - Game over
 function gameOver() {
 	const popup = document.querySelector(".hide");
 	popup.classList.remove("hide");
     const endScore = document.querySelector("#score-moves");
-	endScore.innerHTML = score;
+    endScore.innerHTML = score;
+    keyboard = false;
 }
 
 
