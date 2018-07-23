@@ -1,6 +1,19 @@
-frontend-nanodegree-arcade-game
-===============================
+# FEND - Arcade Game Project
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Description
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+This is a simple browser-based arcade game also known as Frogger.
+
+You can try it out [online](),
+
+or on your local mashine by:
+
+downloading the zip file or cloning the github repository and openning the index.html in you browser
+
+
+## How to play 
+
+The goal is to reach the water tiles. Use arrow keys on your keyboard to move the player up, down, left or right. Avoid the bugs, by hitting a bug you will lose one life. If you reach the water, you'll win 100 point and your player is moved back to the starting position. The game is over when you have no more lives left.
+
+
+
