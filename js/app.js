@@ -61,7 +61,7 @@ class Player {
     }
 
     update(dt) {
-        if (player.y === 0) {
+        if (this.y === 0) {
             getScore();
             resetPlayer();
         }
