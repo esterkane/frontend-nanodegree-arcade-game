@@ -37,7 +37,7 @@ update(dt) {
     // Check for collision with the enemie and reset player position on collision detected
     if (this.y === player.y) {
         if (player.x >= this.x - 80 && player.x <= this.x + 80){
-        resetPlayer();
+        player.resetPlayer();
         removeLife();
         
         }
@@ -63,7 +63,7 @@ class Player {
     update(dt) {
         if (this.y === 0) {
             getScore();
-            resetPlayer();
+            this.resetPlayer();
         }
     }
 
@@ -87,6 +87,11 @@ class Player {
             break;
         }   
     }
+        // Push the Player back to the start position
+        resetPlayer() {
+            player.x = 205; 
+            player.y = 400;
+        }
 };
 
 
@@ -136,12 +141,6 @@ scoreContainer.innerHTML = score;
 function getScore () {
     score = score + 100;
     scoreContainer.innerHTML = score;
-}
-
-// Push the Player back to the start position
-function resetPlayer () {
-    player.x = 205; 
-    player.y = 400;
 }
 
 // Reset lives and score 
